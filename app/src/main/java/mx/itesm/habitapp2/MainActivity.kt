@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity()
 {
-    var adaptadorPais: adaptadorPais? = null
+    var adaptadorPais: adaptadorHabito? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,16 +23,16 @@ class MainActivity : AppCompatActivity()
 
     }
     private fun configurarRecycler(){
-        val layout=LinearLayoutManager(this)
+        val layout= LinearLayoutManager(this)
         layout.orientation=LinearLayoutManager.VERTICAL
-        recyclerPaises.layoutManager=layout
+        recyclerHabit.layoutManager=layout
 
-        adaptadorPais= adaptadorPais(this,pais.arrPaises)
+        adaptadorPais= adaptadorHabito(this,Habit.arrPaises)
         adaptadorPais?.listener=this
-        recyclerPaises.adapter=adaptadorPais
+        recyclerHabit.adapter=adaptadorHabito
 
-        val divisor=DividerItemDecoration(this,layout.orientation)
-        recyclerPaises.addItemDecoration(divisor)
+        val divisor= DividerItemDecoration(this,layout.orientation)
+        recyclerHabit.addItemDecoration(divisor)
     }
 
 
