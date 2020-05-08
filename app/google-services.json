@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "663559365127",
+    "firebase_url": "https://habitapptec.firebaseio.com",
+    "project_id": "habitapptec",
+    "storage_bucket": "habitapptec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663559365127:android:053aaa97790ddbaf0c40a2",
+        "android_client_info": {
+          "package_name": "mx.itesm.habitapp2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663559365127-7ncaq2jmki5a8pgj5o7021nl4ssj3jc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.itesm.habitapp2",
+            "certificate_hash": "9bcc61df9ea4c535ebc660eab60d8bdf9f9cd27a"
+          }
+        },
+        {
+          "client_id": "663559365127-rr7fc9gh7f2v6vpn0ife4lkaop9n3e5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn916EnZ8NRQB6I4HF2WeeHVCRk57nmJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663559365127-rr7fc9gh7f2v6vpn0ife4lkaop9n3e5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
