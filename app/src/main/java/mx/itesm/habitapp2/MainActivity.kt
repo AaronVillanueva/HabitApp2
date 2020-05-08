@@ -12,7 +12,7 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity()
 {
-    var adaptadorPais: adaptadorHabito? = null
+    var adaptadorHabito: adaptadorHabito? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity()
         layout.orientation=LinearLayoutManager.VERTICAL
         recyclerHabit.layoutManager=layout
 
-        adaptadorPais= adaptadorHabito(this,Habit.arrPaises)
-        adaptadorPais?.listener=this
+        adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
+        adaptadorHabito?.listener=this
         recyclerHabit.adapter=adaptadorHabito
 
         val divisor= DividerItemDecoration(this,layout.orientation)

@@ -5,7 +5,7 @@ class Habit (val nombre:String, val casos:Int): Comparable<Habit>{
         return nombre.compareTo(other.nombre)
     }
     companion object{
-        val arrPaises= arrayOf(
+        val arrHabit= arrayOf(
             Habit("test",500)
         )
     }
