@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity()
+class MainActivity : AppCompatActivity(), ListenerRecycler
 {
     var adaptadorHabito: adaptadorHabito? = null
 
@@ -28,12 +28,18 @@ class MainActivity : AppCompatActivity()
         recyclerHabit.layoutManager=layout
 
         adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
-        //adaptadorHabito?.listener = this
+        adaptadorHabito?.listener = this
         recyclerHabit.adapter=adaptadorHabito
 
         val divisor= DividerItemDecoration(this,layout.orientation)
         recyclerHabit.addItemDecoration(divisor)
     }
 
+    override fun itemClicked(position: Int) {
+        val nombreHabito = adaptadorHabito?.arrHabitos?.get(position)?.nombre
+        val intConfigHabito = Intent(this, ConfiguraciosHabitoActiv::class.java)
+        intConfigHabito.putExtra("HABITO", nombreHabito)
+        startActivity(intConfigHabito)
 
+    }
 }

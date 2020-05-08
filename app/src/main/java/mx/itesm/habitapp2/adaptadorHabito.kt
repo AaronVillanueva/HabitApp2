@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.renglon_habito.view.*
 class adaptadorHabito (private val contexto: Context, var arrHabitos: Array<Habit> ):
      RecyclerView.Adapter<adaptadorHabito.renglonHabito>()
 {
-    var listener: listenerRecycler?=null
+    var listener: ListenerRecycler? = null
+
     inner class renglonHabito (var vistaRenglon: View): RecyclerView.ViewHolder(vistaRenglon)
     {
 
@@ -28,6 +29,10 @@ class adaptadorHabito (private val contexto: Context, var arrHabitos: Array<Habi
     override fun onBindViewHolder(holder: renglonHabito, position: Int) {
         val habito = arrHabitos[position]
         holder.vistaRenglon.tvNombre.text=habito.nombre
-        holder.vistaRenglon.setOnClickListener{listener?.itemClicked(position)}
+
+        holder.vistaRenglon.setOnClickListener{
+            listener?.itemClicked(position)
+        }
+
     }
 }
