@@ -2,9 +2,7 @@ package mx.itesm.habitapp2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Intent
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -12,17 +10,15 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONArray
-import org.json.JSONObject
 
 class Community : AppCompatActivity() {
     var adaptadorHabito: adaptadorHabito? = null
     private lateinit var baseDatos: FirebaseDatabase
-
+    private lateinit var arrHabitos: MutableList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
-        arrAlumnos= mutableListOf()
+        arrHabitos= mutableListOf()
         baseDatos= FirebaseDatabase.getInstance()
         configurarRecycler()
     }
@@ -48,13 +44,13 @@ class Community : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                arrAlumnos.clear()
+                arrHabitos.clear()
                 for (registro in snapshot.children){
-                    val alumno=registro.getValue(Alumno:: class.java)
-                    arrAlumnos.add("${alumno?.nombre} - ${alumno?.matricula}")
+                    val alumno=registro.getValue(Habit:: class.java)
+                    arrHabitos.add("${alumno?.nombre} - ${alumno?.puntaje}")
                 }
-                val adaptador= ArrayAdapter<String>(context!!, android.R.layout.simple_list_item_1, arrAlumnos)
-                listAdapter=adaptador
+                val adaptador= ArrayAdapter<String>(this@Community,android.R.layout.simple_list_item_1, arrHabitos)
+
             }
 
         })
