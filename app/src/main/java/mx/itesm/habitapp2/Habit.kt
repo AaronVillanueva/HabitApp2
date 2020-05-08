@@ -1,6 +1,6 @@
 package mx.itesm.habitapp2
 
-class Habit (val nombre:String, val casos:Int): Comparable<Habit>{
+class Habit (val nombre:String, val puntaje:Int): Comparable<Habit>{
     override fun compareTo(other: Habit): Int {
         return nombre.compareTo(other.nombre)
     }

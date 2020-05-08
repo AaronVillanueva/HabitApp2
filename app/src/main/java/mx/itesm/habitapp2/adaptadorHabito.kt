@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.renglon_habito.view.*
 
-class adaptadorHabito (private val contexto: Context, var arrPaises: Array<Habit> ):
+class adaptadorHabito (private val contexto: Context, var arrHabitos: Array<Habit> ):
      RecyclerView.Adapter<adaptadorHabito.renglonHabito>()
 {
     var listener: listenerRecycler?=null
@@ -22,12 +22,12 @@ class adaptadorHabito (private val contexto: Context, var arrPaises: Array<Habit
     }
 
     override fun getItemCount(): Int {
-        return arrPaises.size
+        return arrHabitos.size
     }
 
     override fun onBindViewHolder(holder: renglonHabito, position: Int) {
-        val pais=arrPaises[position]
-        holder.vistaRenglon.tvNombre.text=pais.nombre
+        val habito = arrHabitos[position]
+        holder.vistaRenglon.tvNombre.text=habito.nombre
         holder.vistaRenglon.setOnClickListener{listener?.itemClicked(position)}
     }
 }

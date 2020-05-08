@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity()
         recyclerHabit.layoutManager=layout
 
         adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
-        adaptadorHabito?.listener=this
+        //adaptadorHabito?.listener = this
         recyclerHabit.adapter=adaptadorHabito
 
         val divisor= DividerItemDecoration(this,layout.orientation)
