@@ -47,12 +47,12 @@ class Community : AppCompatActivity(), ListenerRecycler {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                //arrHabitos.clear()
+                arrHabitos.clear()
                 for (registro in snapshot.children){
                     val alumno=registro.getValue(Habit:: class.java)
-                    //    arrHabitos.add("${alumno?.nombre} - ${alumno?.puntaje}")
+                        arrHabitos.add("${alumno?.nombre} - ${alumno?.puntaje}")
                 }
-                //val adaptador= ArrayAdapter<String>(this@Community,android.R.layout.simple_list_item_1, arrHabitos)
+                val adaptador= ArrayAdapter<String>(this@Community,android.R.layout.simple_list_item_1, arrHabitos)
 
             }
 
