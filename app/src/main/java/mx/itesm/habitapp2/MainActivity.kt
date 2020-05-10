@@ -3,6 +3,7 @@ package mx.itesm.habitapp2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,11 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
 
 
     }
+    fun ClickCommunity(v: View){
+        val intDatosPais= Intent(this, Community::class.java)
+        startActivity(intDatosPais)
+    }
+
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)
         layout.orientation=LinearLayoutManager.VERTICAL

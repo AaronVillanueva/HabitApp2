@@ -9,30 +9,33 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_community.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class Community : AppCompatActivity() {
+class Community : AppCompatActivity(), ListenerRecycler {
     var adaptadorHabito: adaptadorHabito? = null
     private lateinit var baseDatos: FirebaseDatabase
     private lateinit var arrHabitos: MutableList<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
-        arrHabitos= mutableListOf()
-        baseDatos= FirebaseDatabase.getInstance()
+        //arrHabitos= mutableListOf()
+        //baseDatos= FirebaseDatabase.getInstance()
         configurarRecycler()
+
     }
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)
         layout.orientation=LinearLayoutManager.VERTICAL
-        recyclerHabit.layoutManager=layout
+        recyclerCommunity.layoutManager=layout
 
         adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
-        //adaptadorHabito?.listener = this
-        recyclerHabit.adapter=adaptadorHabito
+        adaptadorHabito?.listener = this
+        recyclerCommunity.adapter=adaptadorHabito
 
         val divisor= DividerItemDecoration(this,layout.orientation)
-        recyclerHabit.addItemDecoration(divisor)
+        recyclerCommunity.addItemDecoration(divisor)
     }
     private fun leerDatos(){
         val baseDatos= FirebaseDatabase.getInstance()
@@ -44,12 +47,12 @@ class Community : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                arrHabitos.clear()
+                //arrHabitos.clear()
                 for (registro in snapshot.children){
                     val alumno=registro.getValue(Habit:: class.java)
-                    arrHabitos.add("${alumno?.nombre} - ${alumno?.puntaje}")
+                    //    arrHabitos.add("${alumno?.nombre} - ${alumno?.puntaje}")
                 }
-                val adaptador= ArrayAdapter<String>(this@Community,android.R.layout.simple_list_item_1, arrHabitos)
+                //val adaptador= ArrayAdapter<String>(this@Community,android.R.layout.simple_list_item_1, arrHabitos)
 
             }
 
