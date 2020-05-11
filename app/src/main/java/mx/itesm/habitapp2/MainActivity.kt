@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,16 +19,14 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val button = findViewById<Button>(R.id.TVCommunity)
-        button.setOnClickListener{
-            val intent = Intent(this, Community::class.java)
-            startActivity(intent)
-        }
-
         configurarRecycler()
 
-    }
 
+    }
+    fun ClickCommunity(v: View){
+        val intDatosPais= Intent(this, Community::class.java)
+        startActivity(intDatosPais)
+    }
 
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)
