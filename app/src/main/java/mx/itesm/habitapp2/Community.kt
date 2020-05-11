@@ -2,6 +2,7 @@ package mx.itesm.habitapp2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 
-class Community : AppCompatActivity() {
+class Community : AppCompatActivity(), ListenerRecycler {
     var adaptadorHabito: adaptadorHabito? = null
     private lateinit var baseDatos: FirebaseDatabase
     private lateinit var arrHabitos: MutableList<String>
@@ -28,12 +29,21 @@ class Community : AppCompatActivity() {
         recyclerHabit.layoutManager=layout
 
         adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
-        //adaptadorHabito?.listener = this
-        recyclerHabit.adapter=adaptadorHabito
+        adaptadorHabito?.listener = this
+        //recyclerHabit.adapter=adaptadorHabito
 
-        val divisor= DividerItemDecoration(this,layout.orientation)
-        recyclerHabit.addItemDecoration(divisor)
+        //val divisor= DividerItemDecoration(this,layout.orientation)
+        //recyclerHabit.addItemDecoration(divisor)
     }
+
+    companion object{
+        val EXTRA_TASK_DESCRIPTION = "task"
+    }
+
+    fun doneClicked(view: View){
+
+    }
+
     private fun leerDatos(){
         val baseDatos= FirebaseDatabase.getInstance()
         val referencia=baseDatos.getReference("/Community")
