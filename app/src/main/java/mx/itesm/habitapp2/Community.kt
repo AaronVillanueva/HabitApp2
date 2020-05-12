@@ -28,14 +28,14 @@ class Community : AppCompatActivity(), ListenerRecycler {
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)
         layout.orientation=LinearLayoutManager.VERTICAL
-        recyclerCommunity.layoutManager=layout
+        //recyclerCommunity.layoutManager=layout
 
         adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
         adaptadorHabito?.listener = this
-        recyclerCommunity.adapter=adaptadorHabito
+       // recyclerCommunity.adapter=adaptadorHabito
 
         val divisor= DividerItemDecoration(this,layout.orientation)
-        recyclerCommunity.addItemDecoration(divisor)
+       // recyclerCommunity.addItemDecoration(divisor)
     }
     private fun leerDatos(){
         val baseDatos= FirebaseDatabase.getInstance()
