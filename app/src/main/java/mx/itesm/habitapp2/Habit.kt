@@ -6,7 +6,8 @@ class Habit (val nombre:String="", val puntaje:String=""): Comparable<Habit>{
     }
     companion object{
         val arrHabit= arrayOf(
-            Habit("test","500")
+            Habit("Leer","5"),
+            Habit("Escribir","5")
         )
     }
 }
