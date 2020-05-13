@@ -61,7 +61,7 @@ class Community : AppCompatActivity(), ListenerRecycler {
         })
 
     }
-    fun ClickCommunity(v: View){
+    fun ClickMain(v: View){
         val intDatosPais= Intent(this, MainActivity::class.java)
         startActivity(intDatosPais)
     }
