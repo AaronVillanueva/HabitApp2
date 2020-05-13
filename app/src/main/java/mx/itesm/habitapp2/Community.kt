@@ -1,9 +1,7 @@
 package mx.itesm.habitapp2
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,10 +32,10 @@ class Community : AppCompatActivity(), ListenerRecycler {
 
         adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
         adaptadorHabito?.listener = this
-       // recyclerCommunity.adapter=adaptadorHabito
+        //recyclerCommunity.adapter=adaptadorHabito
 
         val divisor= DividerItemDecoration(this,layout.orientation)
-       // recyclerCommunity.addItemDecoration(divisor)
+        //recyclerCommunity.addItemDecoration(divisor)
     }
     private fun leerDatos(){
         val baseDatos= FirebaseDatabase.getInstance()
@@ -60,9 +58,5 @@ class Community : AppCompatActivity(), ListenerRecycler {
 
         })
 
-    }
-    fun ClickMain(v: View){
-        val intDatosPais= Intent(this, MainActivity::class.java)
-        startActivity(intDatosPais)
     }
 }
