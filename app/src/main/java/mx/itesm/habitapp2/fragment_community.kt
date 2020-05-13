@@ -49,7 +49,7 @@ class fragment_community : ListFragment() {
                 arrAlumnos.clear()
                 for (registro in snapshot.children){
                     val alumno=registro.getValue(Habit:: class.java)
-                    arrAlumnos.add("${alumno?.nombre} - ${alumno?.puntaje}")
+                    arrAlumnos.add("${alumno?.nombre} puntaje: ${alumno?.puntaje}")
                 }
                 val adaptador= ArrayAdapter<String>(context!!, R.layout.simple_list_item_1, arrAlumnos)
                 listAdapter=adaptador
