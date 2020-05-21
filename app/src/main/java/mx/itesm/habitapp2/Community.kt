@@ -24,7 +24,7 @@ class Community : AppCompatActivity(), ListenerRecycler {
         setContentView(R.layout.activity_community)
         //arrHabitos= mutableListOf()
         //baseDatos= FirebaseDatabase.getInstance()
-        configurarRecycler()
+        //configurarRecycler()
 
     }
     private fun configurarRecycler(){
@@ -32,7 +32,7 @@ class Community : AppCompatActivity(), ListenerRecycler {
         layout.orientation=LinearLayoutManager.VERTICAL
         //recyclerCommunity.layoutManager=layout
 
-        adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
+        //adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
         adaptadorHabito?.listener = this
         //recyclerCommunity.adapter=adaptadorHabito
 
