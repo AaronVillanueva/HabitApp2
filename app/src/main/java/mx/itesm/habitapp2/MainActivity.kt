@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         setContentView(R.layout.activity_main)
         configurarRecycler()
 
-        btnLogout.setOnClickListener {
-            logout()
-        }
+        //btnLogout.setOnClickListener {
+        //    logout()
+        //}
     }
 
     fun ClickCommunity(v: View){
@@ -35,6 +35,13 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
     }
 
     fun logout(){
+        FirebaseAuth.getInstance().signOut()
+        finish()
+    }
+
+    fun ClickLogout(v: View){
+        val intent= Intent(this, LoginActivity::class.java)
+        startActivity(intent)
         FirebaseAuth.getInstance().signOut()
         finish()
     }
