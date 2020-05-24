@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -15,22 +17,26 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
 {
     var adaptadorHabito: adaptadorHabito? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         configurarRecycler()
 
-
+        btnLogout.setOnClickListener {
+            logout()
+        }
     }
+
     fun ClickCommunity(v: View){
         val intDatosPais= Intent(this, Community::class.java)
         startActivity(intDatosPais)
     }
 
-    fun ClickLogout(v: View){
-        val intent= Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+    fun logout(){
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 
     private fun configurarRecycler(){

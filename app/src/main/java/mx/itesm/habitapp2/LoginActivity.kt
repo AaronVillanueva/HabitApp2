@@ -35,6 +35,18 @@ class LoginActivity : AppCompatActivity() {
         initialise()
     }
 
+    override fun onResume() {
+        super.onResume()
+        nextPage()
+    }
+
+    fun nextPage(){
+        var currentUser = FirebaseAuth.getInstance().currentUser
+        if(currentUser != null){
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+    }
+
     /*Creamos un método para inicializar nuestros elementos del diseño y la autenticación de firebase*/
     private fun initialise() {
         etEmail = findViewById(R.id.etEmail)
