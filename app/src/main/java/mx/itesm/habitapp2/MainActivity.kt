@@ -28,11 +28,6 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         startActivity(intDatosPais)
     }
 
-    fun ClickLogout(v: View){
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)
         layout.orientation=LinearLayoutManager.VERTICAL

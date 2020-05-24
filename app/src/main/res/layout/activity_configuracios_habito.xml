@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
@@ -41,7 +41,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNewName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Nuevo nombre" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -40,23 +40,13 @@ class fragment_community : ListFragment() {
         val baseDatos= FirebaseDatabase.getInstance()
         val referencia=baseDatos.getReference("/Community")
         referencia.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-
-                //To change body of created functions use File | Settings | File Templates.
-            }
-
+            override fun onCancelled(p0: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrAlumnos.clear()
                 for (registro in snapshot.children){
                     val alumno=registro.getValue(Habit:: class.java)
-                    arrAlumnos.add("${alumno?.nombre} - ${alumno?.puntaje}")
-                }
+                    arrAlumnos.add("${alumno?.nombre} puntaje: ${alumno?.puntaje}") }
                 val adaptador= ArrayAdapter<String>(context!!, R.layout.simple_list_item_1, arrAlumnos)
-                listAdapter=adaptador
-            }
-
-        })
-
-    }
+                listAdapter=adaptador}})}
 
 }
