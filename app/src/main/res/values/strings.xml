@@ -21,4 +21,8 @@
     <string name="lastName">Apellido</string>
     <string name="login">Iniciar sesión</string>
     <string name="createAct">Crear cuenta</string>
+    <string name="channel_name">Recordatorio diario</string>
+    <string name="channel_description">DESC</string>
+    <string name="NotificacionDiarioTitle">Actualiza tu progreso</string>
+    <string name="NotificacionDiarioText">Hola! Es importante que actualices tu progreso todos los días</string>
 </resources>
