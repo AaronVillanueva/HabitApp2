@@ -28,12 +28,17 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         startActivity(intDatosPais)
     }
 
+    fun ClickLogout(v: View){
+        val intent= Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)
         layout.orientation=LinearLayoutManager.VERTICAL
         recyclerHabit.layoutManager=layout
 
-        adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
+        //adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
         adaptadorHabito?.listener = this
         recyclerHabit.adapter=adaptadorHabito
 
