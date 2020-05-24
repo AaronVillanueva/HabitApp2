@@ -19,10 +19,15 @@ class LoginActivity : AppCompatActivity() {
     private var password by Delegates.notNull<String>()
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
+    private lateinit var etName: EditText
+    private lateinit var etLastName: EditText
+
+
     //private lateinit var mProgressBar: ProgressBar
 
     //Creamos nuestra variable de autenticación firebase
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var firebaseAuthListener: FirebaseAuth.AuthStateListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

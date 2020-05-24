@@ -1,7 +1,9 @@
 package mx.itesm.habitapp2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +26,11 @@ class Community : AppCompatActivity(), ListenerRecycler {
         //baseDatos= FirebaseDatabase.getInstance()
         configurarRecycler()
 
+    }
+
+    fun ClickMain(v: View){
+        val intent= Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)

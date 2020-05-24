@@ -23,6 +23,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
+    private lateinit var firebaseAuthListener: FirebaseAuth.AuthStateListener
 
     //global variables
     private var firstName by Delegates.notNull<String>()
@@ -76,17 +77,14 @@ class RegisterActivity : AppCompatActivity() {
             progressBar.show()
 
 //vamos a dar de alta el usuario con el correo y la contraseña
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) {
-
-                    //Si está en este método quiere decir que todo salio bien en la autenticación
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
 
 /*Una vez que se dio de alta la cuenta vamos a dar de alta la información en la base de datos*/
 
 /*Vamos a obtener el id del usuario con que accedio con currentUser*/
                     val user: FirebaseUser = auth.currentUser!!
 //enviamos email de verificación a la cuenta del usuario
-                    verifyEmail(user);
+                    //verifyEmail(user);
 /*Damos de alta la información del usuario enviamos el la referencia para guardarlo en la base de datos  de preferencia enviamos el id para que no se repita*/
                     val currentUserDb = databaseReference.child(user.uid)
 //Agregamos el nombre y el apellido dentro de user/id/
@@ -113,7 +111,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun updateUserInfoAndGoHome() {
         //Nos vamos a la actividad home
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
 //ocultamos el progress
