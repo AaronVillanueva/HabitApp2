@@ -43,8 +43,10 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         setContentView(R.layout.activity_main)
 
 
-        arrHabitos = mutableListOf()
-        leerDatos()
+        var db=databaseController()
+        arrHabitos=db.leerArrHabitUsuario()
+        arrHabitos=db.arrHabitos
+        //leerDatos()
 
         createNotificationChannel()
         val intentNot = Intent(this, Community::class.java).apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         var uid = currentUser.uid
 
 
+
         var UserData = FirebaseDatabase.getInstance().getReference("Users")
         val key = UserData.push().key
         //UserData.child(uid).push().setValue(PrevHab("Correr"))
@@ -79,9 +82,13 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
     }
 
     fun ClickCommunity(v: View){
-        val intDatosPais= Intent(this, Community::class.java)
-        startActivity(intDatosPais)
-    }
+        val inten= Intent(this, Community::class.java)
+        startActivity(inten)}
+
+    fun ClickNuevo(v: View){
+        val inten= Intent(this, NuevoHabito::class.java)
+            inten.putExtra("arrSize", arrHabitos.size.toString())
+        startActivity(inten)}
 
     fun ClickLogout(v: View){
         val intent= Intent(this, LoginActivity::class.java)
@@ -96,17 +103,13 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
 
         var currentUser = mAuth.currentUser!!
         var uid = currentUser.uid
-        Log.d("myTag", "$uid")
         val baseDatos= FirebaseDatabase.getInstance()
         val referencia=baseDatos.getReference("/Users/$uid")
-        Log.d("key2", "${baseDatos.getReference("/Users/$uid/Count")}")
         referencia.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrHabitos.clear()
                 for (registro in snapshot.children) {
-                    Log.d("key", "${registro.key}")
-                    Log.d("val", "${registro.value}")
                     if (registro.key !="Count"){
                     val alumno = registro.getValue(Habit::class.java)
                     arrHabitos.add(Habit("${alumno?.nombre}", "${alumno?.puntaje}"))}

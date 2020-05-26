@@ -8,9 +8,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHabit"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="354dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -29,12 +31,12 @@
         android:id="@+id/TVCommunity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginBottom="32dp"
         android:onClick="ClickCommunity"
         android:text="Community"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerHabit" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnLogout"
@@ -44,4 +46,15 @@
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="ClickNuevo"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerHabit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
