@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.UserHandle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -95,15 +96,20 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
 
         var currentUser = mAuth.currentUser!!
         var uid = currentUser.uid
+        Log.d("myTag", "$uid")
         val baseDatos= FirebaseDatabase.getInstance()
         val referencia=baseDatos.getReference("/Users/$uid")
+        Log.d("key2", "${baseDatos.getReference("/Users/$uid/Count")}")
         referencia.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrHabitos.clear()
                 for (registro in snapshot.children) {
+                    Log.d("key", "${registro.key}")
+                    Log.d("val", "${registro.value}")
+                    if (registro.key !="Count"){
                     val alumno = registro.getValue(Habit::class.java)
-                    arrHabitos.add(Habit("${alumno?.nombre}", "${alumno?.puntaje}"))
+                    arrHabitos.add(Habit("${alumno?.nombre}", "${alumno?.puntaje}"))}
                 }
                 configurarRecycler()
             }
