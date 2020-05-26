@@ -26,8 +26,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var firebaseAuthListener: FirebaseAuth.AuthStateListener
 
     //global variables
-    private var firstName by Delegates.notNull<String>()
-    private var lastName by Delegates.notNull<String>()
+    var firstName by Delegates.notNull<String>()
+    var lastName by Delegates.notNull<String>()
     private var email by Delegates.notNull<String>()
     private var password by Delegates.notNull<String>()
 
@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     //Vamos a crear nuestro método para crear una nueva cuenta
-    private fun createNewAccount() {
+    fun createNewAccount() {
 
         //Obtenemos los datos de nuestras cajas de texto
         firstName = txtName.text.toString()
