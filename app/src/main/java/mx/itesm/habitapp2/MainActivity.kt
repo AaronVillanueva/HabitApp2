@@ -8,31 +8,23 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.UserHandle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthSettings
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONArray
-import org.json.JSONObject
-import java.util.*
-import kotlin.collections.HashMap
-import kotlin.collections.Map as Map1
 
 class MainActivity : AppCompatActivity(), ListenerRecycler
 {
     var adaptadorHabito: adaptadorHabito? = null
 
     private lateinit var arrHabitos: MutableList<Habit>
-
+    var db=databaseController()
     private lateinit var mUser: User
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDatabase: FirebaseDatabase
@@ -42,11 +34,10 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        var db=databaseController()
         arrHabitos=db.leerArrHabitUsuario()
         arrHabitos=db.arrHabitos
         leerDatos()
+
 
         createNotificationChannel()
         val intentNot = Intent(this, Community::class.java).apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
@@ -111,8 +102,8 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
                 arrHabitos.clear()
                 for (registro in snapshot.children) {
                     if (registro.key !="Count"){
-                    val alumno = registro.getValue(Habit::class.java)
-                    arrHabitos.add(Habit("${alumno?.nombre}", "${alumno?.puntaje}"))}
+                    val habitonuevo = registro.getValue(Habit::class.java)
+                    arrHabitos.add(Habit("${habitonuevo?.nombre}", "${habitonuevo?.puntaje}","${habitonuevo?.fecha}"))}
                 }
                 configurarRecycler()
             }
@@ -153,5 +144,14 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         intConfigHabito.putExtra("KEY", (position+1).toString())
         startActivity(intConfigHabito)
 
+    }
+    fun checkmarked(v:View){
+        var vv=v as Button
+        var pos=vv.hint.toString().toInt()
+        var modificado=arrHabitos[pos-1]
+        var res=db.agregarPuntaje(modificado,pos.toString())
+        if (res==1){
+            val inten= Intent(this, MainActivity::class.java)
+            startActivity(inten)}
     }
 }

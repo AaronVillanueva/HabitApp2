@@ -50,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
+        android:hint="gg5"
         android:onClick="actualizarHabito"
         android:text="Actualizar"
         app:layout_constraintBottom_toBottomOf="parent"

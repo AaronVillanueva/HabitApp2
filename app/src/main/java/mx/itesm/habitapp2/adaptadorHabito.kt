@@ -30,6 +30,11 @@ class adaptadorHabito (private val contexto: Context, var arrHabitos: MutableLis
         val habito = arrHabitos[position]
         holder.vistaRenglon.tvNombre.text=habito.nombre
         holder.vistaRenglon.tvPuntaje.text=habito.puntaje
+
+        //no tocar
+        val pos=(position+1).toString()
+        holder.vistaRenglon.botonDone.setHint(pos)
+
         holder.vistaRenglon.setOnClickListener{
             listener?.itemClicked(position)
         }

@@ -9,11 +9,10 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_nuevo_habito.*
 
 class NuevoHabito : AppCompatActivity() {
-    private lateinit var db: databaseController
+    private var db=databaseController()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_habito)
-        var db=databaseController()
         val size = intent.getStringExtra("arrSize").toInt()
         Log.d("arrSize",size.toString())
     }
@@ -22,7 +21,7 @@ class NuevoHabito : AppCompatActivity() {
         var db=databaseController()
         val size = intent.getStringExtra("arrSize").toInt()
         val texto=entrada.text.toString()
-        db.escribirHabitUsuarioStrings("$texto","0",size)
+        db.escribirHabitUsuarioStrings("$texto","0",db.getDate(),size)
         val inten= Intent(this, MainActivity::class.java)
         startActivity(inten)
     }
