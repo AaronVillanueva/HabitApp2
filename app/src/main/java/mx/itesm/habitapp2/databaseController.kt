@@ -29,6 +29,10 @@ class databaseController () {
         return arrHabitos
     }
 
+    public fun actualizarHabit(key:String,nuevoHabito:Habit){
+        var referencia=baseDatos.getReference("/Users/$uid/$key")
+        referencia.setValue(nuevoHabito) }
+
     //metodos para escribir un habito nuevo en la BD
     public fun escribirHabitUsuario(habit:Habit,pos:Int){
         var next=pos+1

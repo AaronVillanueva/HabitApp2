@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         var db=databaseController()
         arrHabitos=db.leerArrHabitUsuario()
         arrHabitos=db.arrHabitos
-        //leerDatos()
+        leerDatos()
 
         createNotificationChannel()
         val intentNot = Intent(this, Community::class.java).apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
@@ -146,8 +146,11 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
 
     override fun itemClicked(position: Int) {
         val nombreHabito = adaptadorHabito?.arrHabitos?.get(position)?.nombre
+        val puntajeHabito = adaptadorHabito?.arrHabitos?.get(position)?.puntaje
         val intConfigHabito = Intent(this, ConfiguraciosHabitoActiv::class.java)
         intConfigHabito.putExtra("HABITO", nombreHabito)
+        intConfigHabito.putExtra("PUNTAJE", puntajeHabito)
+        intConfigHabito.putExtra("KEY", (position+1).toString())
         startActivity(intConfigHabito)
 
     }

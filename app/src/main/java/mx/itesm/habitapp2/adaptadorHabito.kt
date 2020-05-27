@@ -29,7 +29,7 @@ class adaptadorHabito (private val contexto: Context, var arrHabitos: MutableLis
     override fun onBindViewHolder(holder: renglonHabito, position: Int) {
         val habito = arrHabitos[position]
         holder.vistaRenglon.tvNombre.text=habito.nombre
-
+        holder.vistaRenglon.tvPuntaje.text=habito.puntaje
         holder.vistaRenglon.setOnClickListener{
             listener?.itemClicked(position)
         }
