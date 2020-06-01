@@ -1,27 +1,46 @@
 package mx.itesm.habitapp2
 
+//import jdk.nashorn.internal.objects.NativeDate.getTime
+
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.SystemClock
 import android.view.View
 import android.widget.Button
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+
 
 class MainActivity : AppCompatActivity(), ListenerRecycler
 {
+
+    val NOTIFICATION_CHANNEL_ID = "10001"
+    private val default_notification_channel_id = "default"
+    lateinit var btnDate: Button
+    var NOTIFICATION_ID = "notification-id"
+    var NOTIFICATION = "notification"
+
+
+    val myCalendar = Calendar.getInstance()
     var adaptadorHabito: adaptadorHabito? = null
+
+    lateinit var show: Button
+
+    var MY_PREFS_NAME = "nameOfSharedPreferences"
 
     private lateinit var arrHabitos: MutableList<Habit>
     var db=databaseController()
@@ -33,27 +52,13 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //show = findViewById(R.id.btn_show)
+
+        //show.setOnClickListener { startAlarm(true, true) }
 
         arrHabitos=db.leerArrHabitUsuario()
         arrHabitos=db.arrHabitos
         leerDatos()
-
-
-        createNotificationChannel()
-        val intentNot = Intent(this, Community::class.java).apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intentNot, 0)
-        var builder = NotificationCompat.Builder(this, "1")
-            .setSmallIcon(R.drawable.common_full_open_on_phone)
-            .setContentTitle(getString(R.string.NotificacionDiarioTitle))
-            .setContentText("Hola! Es importante que actualices tu progreso todos los días")
-            .setStyle(NotificationCompat.BigTextStyle().bigText(getString(R.string.NotificacionDiarioText)))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-
-
-        with(NotificationManagerCompat.from(this)) { notify(1, builder.build()) }
-
         configurarRecycler()
 
         mAuth = FirebaseAuth.getInstance()
@@ -154,4 +159,29 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
             val inten= Intent(this, MainActivity::class.java)
             startActivity(inten)}
     }
+
+//    private fun startAlarm(
+//        isNotification: Boolean,
+//        isRepeat: Boolean
+//    ) {
+//        val manager =
+//            getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//        val myIntent: Intent
+//        val pendingIntent: PendingIntent
+//        // SET TIME HERE
+//        val calendar = Calendar.getInstance()
+//        calendar.setTimeInMillis(System.currentTimeMillis())
+//        calendar.set(Calendar.HOUR_OF_DAY, 0)
+//        calendar.set(Calendar.MINUTE, 10)
+//        calendar.set(Calendar.SECOND, 3)
+//        myIntent = Intent(this, Notification_receiver::class.java)
+//        pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0)
+//        if (!isRepeat) manager[AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 3000] =
+//            pendingIntent else manager.setRepeating(
+//            AlarmManager.RTC_WAKEUP,
+//            calendar.timeInMillis,
+//            AlarmManager.INTERVAL_DAY,
+//            pendingIntent
+//        )
+//    }
 }

@@ -1,14 +1,20 @@
 package mx.itesm.habitapp2
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
 import kotlin.properties.Delegates
 
 class LoginActivity : AppCompatActivity() {
@@ -76,7 +82,10 @@ class LoginActivity : AppCompatActivity() {
                         task ->
                     if (task.isSuccessful) {
                         // Si se inició correctamente la sesión vamos a la vista Home de la aplicación
-                        goHome() // Creamos nuestro método en la parte de abajo
+                        startAlarm(true, true)
+                        goHome()
+
+                        // Creamos nuestro método en la parte de abajo
                     } else {
                         // sino le avisamos el usuairo que orcurrio un problema
                         Toast.makeText(this, "Authentication failed.",
@@ -103,6 +112,31 @@ class LoginActivity : AppCompatActivity() {
     /*Primero creamos nuestro evento login dentro de este llamamos nuestro método loginUser al dar click en el botón se iniciara sesión */
     fun login(view: View) {
         loginUser()
+    }
+
+    private fun startAlarm(
+        isNotification: Boolean,
+        isRepeat: Boolean
+    ) {
+        val manager =
+            getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val myIntent: Intent
+        val pendingIntent: PendingIntent
+        // SET TIME HERE
+        val calendar = Calendar.getInstance()
+        calendar.setTimeInMillis(System.currentTimeMillis())
+        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 5)
+        myIntent = Intent(this, Notification_receiver::class.java)
+        pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0)
+        if (!isRepeat) manager[AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 3000] =
+            pendingIntent else manager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
     }
 
 /*Si se olvido de la contraseña lo enviaremos en la siguiente actividad nos marcara error porque necesitamos crear la actividad*/
