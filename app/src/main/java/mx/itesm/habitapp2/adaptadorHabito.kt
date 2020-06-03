@@ -1,6 +1,7 @@
 package mx.itesm.habitapp2
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,9 @@ class adaptadorHabito (private val contexto: Context, var arrHabitos: MutableLis
         val habito = arrHabitos[position]
         holder.vistaRenglon.tvNombre.text=habito.nombre
         holder.vistaRenglon.tvPuntaje.text=habito.puntaje
+        if(habito.puntaje.toInt()>47){
+            holder.vistaRenglon.tvPuntaje.setTextColor(Color.YELLOW)
+        }
 
         //no tocar
         val pos=(position+1).toString()

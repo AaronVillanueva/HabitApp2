@@ -20,7 +20,8 @@ class ConfiguraciosHabitoActiv : AppCompatActivity() {
         var db=databaseController()
         val pos = intent.getStringExtra("KEY")
         val puntaje = intent.getStringExtra("PUNTAJE")
-        db.actualizarHabit(pos,Habit(etNuevoNombre.text.toString(),puntaje))
+        val fecha = intent.getStringExtra("FECHA")
+        db.actualizarHabit(pos,Habit(etNuevoNombre.text.toString(),puntaje,fecha))
         val inten= Intent(this, MainActivity::class.java)
         startActivity(inten)
     }

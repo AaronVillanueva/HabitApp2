@@ -143,9 +143,11 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
     override fun itemClicked(position: Int) {
         val nombreHabito = adaptadorHabito?.arrHabitos?.get(position)?.nombre
         val puntajeHabito = adaptadorHabito?.arrHabitos?.get(position)?.puntaje
+        val fechaHabito = adaptadorHabito?.arrHabitos?.get(position)?.fecha
         val intConfigHabito = Intent(this, ConfiguraciosHabitoActiv::class.java)
         intConfigHabito.putExtra("HABITO", nombreHabito)
         intConfigHabito.putExtra("PUNTAJE", puntajeHabito)
+        intConfigHabito.putExtra("FECHA", fechaHabito)
         intConfigHabito.putExtra("KEY", (position+1).toString())
         startActivity(intConfigHabito)
 
