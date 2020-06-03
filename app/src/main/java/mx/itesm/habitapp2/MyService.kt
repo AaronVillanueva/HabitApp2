@@ -33,7 +33,7 @@ class MyService: Service() {
         val pendingIntent: PendingIntent
         //THIS IS WHERE YOU SET NOTIFICATION TIME FOR CASES WHEN THE NOTIFICATION NEEDS TO BE RESCHEDULED
         val calendar: Calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        calendar.set(Calendar.HOUR_OF_DAY, 17)
         calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 5)
         val myIntent: Intent = Intent(this, Notification_receiver::class.java)

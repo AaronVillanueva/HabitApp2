@@ -11,16 +11,20 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -56,6 +60,22 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
 
         //show.setOnClickListener { startAlarm(true, true) }
 
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+
+                // Get new Instance ID token
+                val token = task.result?.token
+
+                // Log and toast
+                val msg = getString(R.string.msg_token_fmt, token)
+                //Log.d(TAG, msg)
+                //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            })
+
         arrHabitos=db.leerArrHabitUsuario()
         arrHabitos=db.arrHabitos
         leerDatos()
@@ -75,6 +95,11 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
         //UserData.child("firstName").setValue(registerData.firstName)
         //UserData.child("lastName").setValue(registerData.lastName)
 
+    }
+
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 
     fun ClickCommunity(v: View){
@@ -161,29 +186,4 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
             val inten= Intent(this, MainActivity::class.java)
             startActivity(inten)}
     }
-
-//    private fun startAlarm(
-//        isNotification: Boolean,
-//        isRepeat: Boolean
-//    ) {
-//        val manager =
-//            getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//        val myIntent: Intent
-//        val pendingIntent: PendingIntent
-//        // SET TIME HERE
-//        val calendar = Calendar.getInstance()
-//        calendar.setTimeInMillis(System.currentTimeMillis())
-//        calendar.set(Calendar.HOUR_OF_DAY, 0)
-//        calendar.set(Calendar.MINUTE, 10)
-//        calendar.set(Calendar.SECOND, 3)
-//        myIntent = Intent(this, Notification_receiver::class.java)
-//        pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0)
-//        if (!isRepeat) manager[AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 3000] =
-//            pendingIntent else manager.setRepeating(
-//            AlarmManager.RTC_WAKEUP,
-//            calendar.timeInMillis,
-//            AlarmManager.INTERVAL_DAY,
-//            pendingIntent
-//        )
-//    }
 }

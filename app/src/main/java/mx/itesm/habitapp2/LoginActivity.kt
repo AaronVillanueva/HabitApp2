@@ -125,7 +125,7 @@ class LoginActivity : AppCompatActivity() {
         // SET TIME HERE
         val calendar = Calendar.getInstance()
         calendar.setTimeInMillis(System.currentTimeMillis())
-        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        calendar.set(Calendar.HOUR_OF_DAY, 17)
         calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 5)
         myIntent = Intent(this, Notification_receiver::class.java)

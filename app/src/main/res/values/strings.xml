@@ -25,4 +25,5 @@
     <string name="channel_description">DESC</string>
     <string name="NotificacionDiarioTitle">Actualiza tu progreso</string>
     <string name="NotificacionDiarioText">Hola! Es importante que actualices tu progreso todos los días</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
 </resources>
