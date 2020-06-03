@@ -32,7 +32,7 @@ class adaptadorHabito (private val contexto: Context, var arrHabitos: MutableLis
         holder.vistaRenglon.tvNombre.text=habito.nombre
         holder.vistaRenglon.tvPuntaje.text=habito.puntaje
         if(habito.puntaje.toInt()>47){
-            holder.vistaRenglon.tvPuntaje.setTextColor(Color.YELLOW)
+            holder.vistaRenglon.tvPuntaje.setTextColor(Color.GREEN)
         }
 
         //no tocar
