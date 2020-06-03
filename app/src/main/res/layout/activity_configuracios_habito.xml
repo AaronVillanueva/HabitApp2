@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Modificar Habito"
+        android:text="Modify Habit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
             android:id="@+id/etNuevoNombre"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Nuevo nombre" />
+            android:hint="New Name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -52,10 +52,21 @@
         android:layout_marginBottom="48dp"
         android:hint="gg5"
         android:onClick="actualizarHabito"
-        android:text="Actualizar"
+        android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:onClick="borrarHabito"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/Actualizar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

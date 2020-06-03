@@ -37,6 +37,10 @@ class databaseController () {
     public fun actualizarHabitString(key:String,nombre:String,puntaje:String,fecha:String){
         actualizarHabit(key,Habit(nombre,puntaje,fecha))
     }
+    public fun eliminarHabit(key:String){
+        var referencia=baseDatos.getReference("/Users/$uid/$key")
+        referencia.removeValue()
+    }
 
     public fun agregarPuntaje(anterior:Habit,key:String):Int{
         var fecha=anterior.fecha.split(".")

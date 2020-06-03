@@ -25,4 +25,10 @@ class ConfiguraciosHabitoActiv : AppCompatActivity() {
         val inten= Intent(this, MainActivity::class.java)
         startActivity(inten)
     }
+    fun borrarHabito(v: View){
+        var db=databaseController()
+        db.eliminarHabit(intent.getStringExtra("KEY"))
+        val inten= Intent(this, MainActivity::class.java)
+        startActivity(inten)
+    }
 }

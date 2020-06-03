@@ -21,7 +21,8 @@ class NuevoHabito : AppCompatActivity() {
         var db=databaseController()
         val size = intent.getStringExtra("arrSize").toInt()
         val texto=entrada.text.toString()
-        db.escribirHabitUsuarioStrings("$texto","0",db.getDate(),size)
+        //db.escribirHabitUsuarioStrings("$texto","0",db.getDate(),size)
+        db.escribirHabitUsuarioStrings("$texto","0","01.01.01",size)
         val inten= Intent(this, MainActivity::class.java)
         startActivity(inten)
     }
