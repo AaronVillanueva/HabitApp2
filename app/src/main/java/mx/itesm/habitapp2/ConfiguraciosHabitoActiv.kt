@@ -14,6 +14,7 @@ class ConfiguraciosHabitoActiv : AppCompatActivity() {
         setContentView(R.layout.activity_configuracios_habito)
         val nombre = intent.getStringExtra("HABITO")
         tvHabitoNombre.text = nombre
+        etNuevoNombre.setText(intent.getStringExtra("HABITO"))
     }
 
     fun actualizarHabito(v: View){

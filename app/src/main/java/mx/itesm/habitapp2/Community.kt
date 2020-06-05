@@ -37,35 +37,12 @@ class Community : AppCompatActivity(), ListenerRecycler {
     private fun configurarRecycler(){
         val layout= LinearLayoutManager(this)
         layout.orientation=LinearLayoutManager.VERTICAL
-        //recyclerCommunity.layoutManager=layout
 
-        //adaptadorHabito= adaptadorHabito(this,Habit.arrHabit)
         adaptadorHabito?.listener = this
-        //recyclerCommunity.adapter=adaptadorHabito
+
 
         val divisor= DividerItemDecoration(this,layout.orientation)
         //recyclerCommunity.addItemDecoration(divisor)
     }
-    private fun leerDatos(){
-        val baseDatos= FirebaseDatabase.getInstance()
-        val referencia=baseDatos.getReference("/Community")
-        referencia.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
 
-                //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                arrHabitos.clear()
-                for (registro in snapshot.children){
-                    val alumno=registro.getValue(Habit:: class.java)
-                        arrHabitos.add("${alumno?.nombre} - ${alumno?.puntaje}")
-                }
-                val adaptador= ArrayAdapter<String>(this@Community,android.R.layout.simple_list_item_1, arrHabitos)
-
-            }
-
-        })
-
-    }
 }

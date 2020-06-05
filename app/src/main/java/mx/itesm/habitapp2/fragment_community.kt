@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.fragment.app.ListFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -45,8 +46,13 @@ class fragment_community : ListFragment() {
                 arrAlumnos.clear()
                 for (registro in snapshot.children){
                     val alumno=registro.getValue(Habit:: class.java)
-                    arrAlumnos.add("${alumno?.nombre} puntaje: ${alumno?.puntaje}") }
+                    arrAlumnos.add("${alumno?.nombre}") }
                 val adaptador= ArrayAdapter<String>(context!!, R.layout.simple_list_item_1, arrAlumnos)
                 listAdapter=adaptador}})}
+
+    override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
+        super.onListItemClick(l, v, position, id)
+        print(position.toString())
+    }
 
 }
