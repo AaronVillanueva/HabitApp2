@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.renglon_habito.view.*
 
 class adaptadorHabito (private val contexto: Context, var arrHabitos: MutableList<Habit> ):
-     RecyclerView.Adapter<adaptadorHabito.renglonHabito>()
-{
+     RecyclerView.Adapter<adaptadorHabito.renglonHabito>() {
     var listener: ListenerRecycler? = null
 
     inner class renglonHabito (var vistaRenglon: View): RecyclerView.ViewHolder(vistaRenglon)

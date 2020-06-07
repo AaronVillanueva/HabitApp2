@@ -29,23 +29,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(), ListenerRecycler
-{
-
+class MainActivity : AppCompatActivity(), ListenerRecycler {
     val NOTIFICATION_CHANNEL_ID = "10001"
     private val default_notification_channel_id = "default"
     lateinit var btnDate: Button
     var NOTIFICATION_ID = "notification-id"
     var NOTIFICATION = "notification"
-
-
     val myCalendar = Calendar.getInstance()
     var adaptadorHabito: adaptadorHabito? = null
-
     lateinit var show: Button
-
     var MY_PREFS_NAME = "nameOfSharedPreferences"
-
     private lateinit var arrHabitos: MutableList<Habit>
     var db=databaseController()
     private lateinit var mUser: User
@@ -104,6 +97,7 @@ class MainActivity : AppCompatActivity(), ListenerRecycler
 
     fun ClickCommunity(v: View){
         val inten= Intent(this, Community::class.java)
+        inten.putExtra("POS",arrHabitos.size.toString())
         startActivity(inten)}
 
     fun ClickNuevo(v: View){
