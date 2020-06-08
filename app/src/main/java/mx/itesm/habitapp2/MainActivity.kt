@@ -69,10 +69,11 @@ class MainActivity : AppCompatActivity(), ListenerRecycler {
                 //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             })
 
-        arrHabitos=db.leerArrHabitUsuario()
-        arrHabitos=db.arrHabitos
+        //arrHabitos=db.leerArrHabitUsuario()
+        //arrHabitos=db.arrHabitos
+        arrHabitos= mutableListOf()
         leerDatos()
-        configurarRecycler()
+        //configurarRecycler()
 
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance()
@@ -125,7 +126,8 @@ class MainActivity : AppCompatActivity(), ListenerRecycler {
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrHabitos.clear()
                 for (registro in snapshot.children) {
-                    if (registro.key !="Count"){
+                    if (registro.key !="firstName" && registro.key != "lastName"){
+                        Log.d("REGISTRO",registro.getValue().toString())
                     val habitonuevo = registro.getValue(Habit::class.java)
                     arrHabitos.add(Habit("${habitonuevo?.nombre}", "${habitonuevo?.puntaje}","${habitonuevo?.fecha}"))}
                 }

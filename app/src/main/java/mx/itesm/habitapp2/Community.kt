@@ -31,8 +31,7 @@ class Community : AppCompatActivity(), ListenerRecycler {
         setContentView(R.layout.activity_community)
         //arrHabitos= mutableListOf()
         //baseDatos= FirebaseDatabase.getInstance()
-        arrHabitos=db.leerArrHabitUsuario()
-        arrHabitos=db.arrHabitos
+        arrHabitos= mutableListOf()
         leerDatos()
 
     }

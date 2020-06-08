@@ -25,7 +25,7 @@ class databaseController () {
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrHabitos.clear()
                 for (registro in snapshot.children){
-                    if (registro.key !="Count"){
+                    if (registro.key !="Count" && registro.key !="firstName" && registro.key != "lastName"){
                         val habito=registro.getValue(Habit:: class.java)
                         arrHabitos.add(Habit ("${habito?.nombre}","${habito?.puntaje}","${habito?.fecha}")) } }} })
         return arrHabitos
