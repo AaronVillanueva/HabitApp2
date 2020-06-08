@@ -62,7 +62,7 @@ class Community : AppCompatActivity(), ListenerRecycler {
         var db=databaseController()
         var vv=v as Button
         var pos = intent.getStringExtra("POS")
-        db.escribirHabitUsuario( Habit(vv.hint.toString(),"0",db.getDate()),pos.toInt())
+        db.escribirHabitUsuario( Habit(vv.hint.toString(),"0","01.01.01"),pos.toInt())
         val inten= Intent(this, MainActivity::class.java)
         startActivity(inten)
     }
